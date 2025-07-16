@@ -12,36 +12,31 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from gacha_logic import RANKS, draw_gacha
 
 def test_ranks_probabilities_sum_to_one():
-    """
-    RANKS定数の確率の合計が1.0であることをテストする
-    """
-    # 浮動小数点数の比較のため、math.iscloseを使用
+    
+    #RANKS定数の確率の合計が1.0であることをテストする
     assert math.isclose(sum(RANKS.values()), 1.0)
 
 def test_ranks_probabilities_are_non_negative():
-    """
-    RANKS定数の全ての確率が0以上であることをテストする
-    """
+    
+    #RANKS定数の全ての確率が0以上であることをテストする
     assert all(prob >= 0 for prob in RANKS.values())
 
 def test_draw_gacha_returns_valid_rank():
-    """
-    draw_gacha関数が有効なランクを返すことをテストする
-    """
+    
+    # draw_gacha関数が有効なランクを返すことをテストする
     # RANKS定数のキーを有効なランクとして使用
     valid_ranks = set(RANKS.keys())
     result = draw_gacha()
     assert result in valid_ranks
 
 def test_gacha_probability_distribution():
-    """
-    ガチャの確率分布が期待値に近いことを統計的にテストする
-    """
-    num_draws = 10000  # 試行回数
+    
+    #ガチャの確率分布が期待値に近いことを統計的にテストする
+    num_draws = 10000 
     results = [draw_gacha() for _ in range(num_draws)]
     counts = Counter(results)
 
-    # RANKS定数を期待される確率として使用
+    # RANKS定数を使用
     expected_probabilities = RANKS
 
     # 許容誤差
@@ -57,9 +52,8 @@ def test_gacha_probability_distribution():
 @pytest.mark.parametrize("expected_rank", RANKS.keys())
 @patch('gacha_logic.random.choices')
 def test_draw_gacha_with_mock_parametrized(mock_choices, expected_rank):
-    """
-    random.choicesをモック化し、指定されたランクが返ることをテストする(パラメタライズ)
-    """
+    
+    #モック化し、指定されたランクが返ることをテストする(パラメタライズ)
     # モックが指定されたランクのリストを返すように設定
     mock_choices.return_value = [expected_rank]
 
