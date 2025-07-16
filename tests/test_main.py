@@ -16,7 +16,7 @@ client = TestClient(app)
 def api_response():
     
     #APIにリクエストを送り、そのレスポンスを返すfixture
-    return client.get("/")
+    return client.get("/gacha")
 
 def test_read_main_returns_200_ok(api_response):
     
