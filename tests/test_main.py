@@ -24,3 +24,9 @@ def test_read_main_returns_200_ok(api_response):
     ステータスコード200を返すことをテストする
     """
     assert api_response.status_code == 200
+
+def test_read_main_response_has_result_key(api_response):
+    """
+    レスポンスのJSONに"result"キーが存在することをテストする
+    """
+    assert "result" in api_response.json()
