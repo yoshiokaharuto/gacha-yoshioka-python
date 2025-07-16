@@ -30,3 +30,10 @@ def test_read_main_response_has_result_key(api_response):
     レスポンスのJSONに"result"キーが存在することをテストする
     """
     assert "result" in api_response.json()
+
+def test_read_main_result_is_valid_rank(api_response):
+    """
+    レスポンスの"result"の値が有効なランクであることをテストする
+    """
+    data = api_response.json()
+    assert data["result"] in RANKS.keys()
