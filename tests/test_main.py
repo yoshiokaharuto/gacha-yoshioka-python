@@ -45,7 +45,7 @@ def test_get_non_existent_path_returns_404():
 @pytest.mark.parametrize("method", ["POST", "PUT", "DELETE", "PATCH"])
 def test_method_not_allowed_for_gacha_endpoint(method):
     """
-    /gachaエンドポイントへの許可されていないHTTPメソッドが405を返すことをテストする
+    GET以外でのHTTPメソッドが405を返すことをテストする
     """
     # getattrを使って動的にHTTPメソッドを呼び出す
     response = getattr(client, method.lower())("/gacha")
