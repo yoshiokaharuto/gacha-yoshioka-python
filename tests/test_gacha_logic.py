@@ -1,15 +1,17 @@
-import sys
-import os
-import pytest
 import math
+import os
+import sys
 from collections import Counter
 from unittest.mock import patch
+
+import pytest
 
 # プロジェクトのルートディレクトリをパスに追加
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # gacha_logicからRANKS定数とdraw_gacha関数をインポート
 from gacha_logic import RANKS, draw_gacha
+
 
 def test_ranks_probabilities_sum_to_one():
     
