@@ -33,3 +33,11 @@ def test_read_main_result_is_valid_rank(api_response):
     #レスポンスの"result"の値が有効なランクであることをテストする
     data = api_response.json()
     assert data["result"] in RANKS.keys()
+
+def test_get_non_existent_path_returns_404():
+    """
+    存在しないパスへのGETリクエストが404を返すことをテストする
+    """
+    response = client.get("/non-existent-path")
+    assert response.status_code == 404
+    assert response.json() == {"detail": "Not Found"}
