@@ -1,26 +1,24 @@
 import random
 
+# ガチャの排出率を定数として定義
+RANKS = {
+    "S": 0.05,
+    "A": 0.15,
+    "B": 0.30,
+    "C": 0.50,
+}
+
 def draw_gacha():
     """
-    排出率
-    S: 5%
-    A: 15%
-    B: 30%
-    C: 50%
+    ガチャを引き、結果のランクを返す。
+    排出率はRANKS定数に基づく。
     """
-    ranks = {
-        "S": 0.05,
-        "A": 0.15,
-        "B": 0.30,
-        "C": 0.50,
-    }
-    
     # 重み付きランダム選択
-    # 第一引数: 選択肢のリスト(今回はranksのキー)
-    # 第二引数: 各選択肢の重み（確率)(ranksのvalue）)
+    # 第一引数: 選択肢のリスト(今回はRANKSのキー)
+    # 第二引数: 各選択肢の重み（確率）のリスト(今回はRANKSの値）)
     # 第三引数: 選択する個数
-    # k=1は1つの要素を選ぶこと
-    result = random.choices(list(ranks.keys()), weights=list(ranks.values()), k=1)
+    # k=1は1つの要素を選ぶことを意味する
+    result = random.choices(list(RANKS.keys()), weights=list(RANKS.values()), k=1)
     
     return result[0]
 
