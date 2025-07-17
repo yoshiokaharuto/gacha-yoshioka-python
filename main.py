@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+
 from gacha_logic import draw_gacha
 
 app = FastAPI()
